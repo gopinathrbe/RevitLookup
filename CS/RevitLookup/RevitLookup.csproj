@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A0044297-4924-42DF-A2DD-CEF0436EE240}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>RevitLookup</RootNamespace>
+    <AssemblyName>RevitLookup</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.EndsWith('2017'))">
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.EndsWith('2018'))">
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.EndsWith('2019'))">
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.EndsWith('2020'))">
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.EndsWith('2021'))">
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.EndsWith('2022'))">
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.StartsWith('Debug20'))">
+    <RevitVerion>$(Configuration.Substring(5, 4))</RevitVerion>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.StartsWith('Release20'))">
+    <RevitVerion>$(Configuration.Substring(7, 4))</RevitVerion>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.StartsWith('Debug20'))">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <OutputPath>bin\Debug$(RevitVerion)\</OutputPath>
+    <DefineConstants>TRACE;Revit$(RevitVerion);DEBUG$(RevitVerion)</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.StartsWith('Release20'))">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release$(RevitVerion)\</OutputPath>
+    <DefineConstants>TRACE;Revit$(RevitVerion);RELEASE$(RevitVerion)</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug2017|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug2018|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug2019|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug2020|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug2021|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug2022|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2017|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2018|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2019|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2020|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2021|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2022|AnyCPU'" />
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AdWindows">
+      <HintPath>$(ProgramW6432)\Autodesk\Revit $(RevitVerion)\AdWindows.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPI">
+      <HintPath>$(ProgramW6432)\Autodesk\Revit $(RevitVerion)\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>$(ProgramW6432)\Autodesk\Revit $(RevitVerion)\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActiveUIDoc.cs" />
+    <Compile Include="App.cs" />
+    <Compile Include="AppDocEvents.cs" />
+    <Compile Include="ColumnSorter.cs" />
+    <Compile Include="EventTrack\Events\ApplicationEvents.cs" />
+    <Compile Include="EventTrack\Events\DocEvents.cs" />
+    <Compile Include="EventTrack\Events\EventsBase.cs" />
+    <Compile Include="EventTrack\Forms\EventsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EventTrack\Forms\EventsForm.designer.cs">
+      <DependentUpon>EventsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeomUtils.cs" />
+    <Compile Include="Graphics\DwgStream.cs" />
+    <Compile Include="Graphics\GraphicsStream.cs" />
+    <Compile Include="Graphics\GraphicsStreamDwg.cs" />
+    <Compile Include="Graphics\RevitStream.cs" />
+    <Compile Include="HostApp.cs" />
+    <Compile Include="ModelStats\CategoryCount.cs" />
+    <Compile Include="ModelStats\RawObjCount.cs" />
+    <Compile Include="ModelStats\Report.cs" />
+    <Compile Include="ModelStats\SymbolCount.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Snoop\CollectorExts\CollectorExt.cs" />
+    <Compile Include="Snoop\CollectorExts\CollectorExtElement.cs" />
+    <Compile Include="Snoop\CollectorExts\DataFactory.cs" />
+    <Compile Include="Snoop\CollectorExts\DataTypeInfoHelper.cs" />
+    <Compile Include="Snoop\CollectorExts\ElementMethodsStream.cs" />
+    <Compile Include="Snoop\CollectorExts\ElementPropertiesStream.cs" />
+    <Compile Include="Snoop\CollectorExts\ExtensibleStorageEntityContentStream.cs" />
+    <Compile Include="Snoop\CollectorExts\FamilyTypeParameterValuesStream.cs" />
+    <Compile Include="Snoop\CollectorExts\FamilyTypeParameterValuesStream.cs" />
+    <Compile Include="Snoop\CollectorExts\IElementStream.cs" />
+    <Compile Include="Snoop\CollectorExts\SpatialElementStream.cs" />
+    <Compile Include="Snoop\Collectors\Collector.cs" />
+    <Compile Include="Snoop\Collectors\CollectorEventArgs.cs" />
+    <Compile Include="Snoop\Collectors\CollectorObj.cs" />
+    <Compile Include="Snoop\Collectors\CollectorXmlNode.cs" />
+    <Compile Include="Snoop\Data\Angle.cs" />
+    <Compile Include="Snoop\Data\AssetProperty.cs" />
+    <Compile Include="Snoop\Data\BindingMap.cs" />
+    <Compile Include="Snoop\Data\Bool.cs" />
+    <Compile Include="Snoop\Data\CategoryNameMap.cs" />
+    <Compile Include="Snoop\Data\CategorySeparator.cs" />
+    <Compile Include="Snoop\Data\ClassSeparator.cs" />
+    <Compile Include="Snoop\Data\Color.cs" />
+    <Compile Include="Snoop\Data\Data.cs" />
+    <Compile Include="Snoop\Data\Double.cs" />
+    <Compile Include="Snoop\Data\DoubleArray.cs" />
+    <Compile Include="Snoop\Data\ElementGeometry.cs" />
+    <Compile Include="Snoop\Data\ElementId.cs" />
+    <Compile Include="Snoop\Data\ElementPhaseStatuses.cs" />
+    <Compile Include="Snoop\Data\ElementSet.cs" />
+    <Compile Include="Snoop\Data\EmptyValue.cs" />
+    <Compile Include="Snoop\Data\Enumerable.cs" />
+    <Compile Include="Snoop\Data\EnumerableAsString.cs" />
+    <Compile Include="Snoop\Data\Exception.cs" />
+    <Compile Include="Snoop\Data\ExtensibleStorageSeparator.cs" />
+    <Compile Include="Snoop\Data\Int.cs" />
+    <Compile Include="Snoop\Data\MemberSeparator.cs" />
+    <Compile Include="Snoop\Data\Object.cs" />
+    <Compile Include="Snoop\Data\ParameterSet.cs" />
+    <Compile Include="Snoop\Data\ScheduleDefinitionGetFields.cs" />
+    <Compile Include="Snoop\Data\SnoopableObjectWrapper.cs" />
+    <Compile Include="Snoop\Data\String.cs" />
+    <Compile Include="Snoop\Data\Uv.cs" />
+    <Compile Include="Snoop\Data\ViewCropRegionShapeManagerGetSplitRegionOffsets.cs" />
+    <Compile Include="Snoop\Data\ViewFiltersOverrideGraphicSettings.cs" />
+    <Compile Include="Snoop\Data\ViewFiltersVisibilitySettings.cs" />
+    <Compile Include="Snoop\Data\ViewGetNonControlledTemplateParameterIds.cs" />
+    <Compile Include="Snoop\Data\ViewGetTemplateParameterIds.cs" />
+    <Compile Include="Snoop\Data\Xml.cs" />
+    <Compile Include="Snoop\Data\Xyz.cs" />
+    <Compile Include="Snoop\Forms\BindingMap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\Categories.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\GenericPropGrid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\Geometry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\Objects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\ObjTreeBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\ParamEnum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\ParamEnum.Designer.cs">
+      <DependentUpon>ParamEnum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Snoop\Forms\ParamEnumSnoop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\Parameters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\SearchBy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\SearchBy.Designer.cs">
+      <DependentUpon>SearchBy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Snoop\Utils.cs" />
+    <Compile Include="TestCmds.cs" />
+    <Compile Include="Xml\Forms\Dom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="EventTrack\Forms\EventsForm.resx">
+      <DependentUpon>EventsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\BindingMap.resx">
+      <DependentUpon>BindingMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\Categories.resx">
+      <DependentUpon>Categories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\GenericPropGrid.resx">
+      <DependentUpon>GenericPropGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\Geometry.resx">
+      <DependentUpon>Geometry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\Objects.resx">
+      <DependentUpon>Objects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\ObjTreeBase.resx">
+      <DependentUpon>ObjTreeBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\ParamEnum.resx">
+      <DependentUpon>ParamEnum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\ParamEnumSnoop.resx">
+      <DependentUpon>ParamEnumSnoop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\Parameters.resx">
+      <DependentUpon>Parameters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\SearchBy.resx">
+      <DependentUpon>SearchBy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xml\Forms\Dom.resx">
+      <DependentUpon>Dom.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Documentation\RevitLookup.doc" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Addin\RevitLookup.addin" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ReportBrowser\css\ReportList.css" />
+    <Content Include="ReportBrowser\css\Reports.css" />
+    <Content Include="ReportBrowser\js\ReportUtils_DwgStat.js" />
+    <Content Include="ReportBrowser\ObjCountReport.html" />
+    <Content Include="ReportBrowser\reports\Reports.htm" />
+    <Content Include="ReportBrowser\reports\Report_RawDataSortClass.htm" />
+    <Content Include="ReportBrowser\reports\Report_RawDataSortCount.htm" />
+    <Content Include="ReportBrowser\reports\Report_SymbolRefsSortCount.htm" />
+    <Content Include="ReportBrowser\reports\Report_SymbolRefsSortName.htm" />
+    <Content Include="ReportBrowser\reports\Report_SymbolRefsSortType.htm" />
+    <Resource Include="ReportBrowser\xsl\RawDataSortClass.xsl" />
+    <Resource Include="ReportBrowser\xsl\RawDataSortCount.xsl" />
+    <Resource Include="ReportBrowser\xsl\SymbolRefsSortCount.xsl" />
+    <Resource Include="ReportBrowser\xsl\SymbolRefsSortName.xsl" />
+    <Resource Include="ReportBrowser\xsl\SymbolRefsSortType.xsl" />
+    <EmbeddedResource Include="Resources\RLookup-16.ico" />
+    <EmbeddedResource Include="Resources\RLookup-16.png" />
+    <EmbeddedResource Include="Resources\RLookup-32.png" />
+    <Resource Include="res\COPY.ico" />
+    <Resource Include="res\ImageTreeCategory.bmp" />
+    <Resource Include="res\ImageTreeClass.bmp" />
+    <Resource Include="res\ImageTreeTest.bmp" />
+    <Resource Include="res\ImageTreeXmlAttribute.bmp" />
+    <Resource Include="res\ImageTreeXmlCdata.bmp" />
+    <Resource Include="res\ImageTreeXmlComment.bmp" />
+    <Resource Include="res\ImageTreeXmlDeclaration.bmp" />
+    <Resource Include="res\ImageTreeXmlDoc.bmp" />
+    <Resource Include="res\ImageTreeXmlDocType.bmp" />
+    <Resource Include="res\ImageTreeXmlElement.bmp" />
+    <Resource Include="res\ImageTreeXmlEntity.bmp" />
+    <Resource Include="res\ImageTreeXmlFragment.bmp" />
+    <Resource Include="res\ImageTreeXmlProcInstr.bmp" />
+    <Resource Include="res\ImageTreeXmlReference.bmp" />
+    <Resource Include="res\ImageTreeXmlText.bmp" />
+    <Resource Include="res\ImageTreeXmlUnknown.bmp" />
+    <Resource Include="res\Preview.ico" />
+    <Resource Include="res\Print.ico" />
+    <Resource Include="res\Toolbar.bmp" />
+  </ItemGroup>
+  <ItemGroup Condition="$(Configuration.EndsWith('2017'))">
+    <Compile Remove="Snoop\Data\AssetProperty.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+      echo Configuration: $(Configuration)
+
+      SET PLUGINNAME=""
+      SET ROOTFOLDER=%25ProgramData%25
+      SET PLUGINVERSION=$(Configuration)
+      SET PLUGINVERSION=%25PLUGINVERSION:Debug=%25
+      SET PLUGINVERSION=%25PLUGINVERSION:Release=%25
+
+      SET PARENTFOLDER=%25ROOTFOLDER%25\Autodesk\Revit\Addins\%25PLUGINVERSION%25
+      SET PLUGINFOLDER=%25PARENTFOLDER%25\%25PLUGINNAME%25
+
+      echo Copying results to %25PLUGINVERSION%25
+      if not exist  "%25PLUGINFOLDER%25" mkdir "%25PLUGINFOLDER%25"
+      xcopy "$(ProjectDir)$(OutDir)*.dll"  "%25PLUGINFOLDER%25" /F /Y
+      xcopy "$(ProjectDir)Addin/*.addin" "%25PARENTFOLDER%25" /F /Y
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>
